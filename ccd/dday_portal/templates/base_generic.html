@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+{% load static%}
+
+<head>
+  <link href="{% static 'appointments/css/style.css' %}" type="text/css" rel="stylesheet" media="all">
+
+  <title>
+    {% block title %}
+
+    {% endblock %}
+  </title>
+  {% block css %}
+
+  {% endblock%}
+
+</head>
+
+<body>
+{% block content%}
+
+
+{% endblock %}
+</body>
+
+</html>

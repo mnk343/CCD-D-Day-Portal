@@ -1,0 +1,49 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title%} Show Students{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'showStudents' id %}"><button type="button" class="btn btn-primary btn-lg">Show all Students</button></a>
+<a href="{% url 'UpdateAnnouncement' id %}"><button type="button" class="btn btn-primary btn-lg">Add an announcement</button></a>
+<a href="{% url 'showAnnouncements' %}"><button type="button" class="btn btn-primary btn-lg">Show all announcement</button></a>
+<a href="{% url 'account_logout' %}"><button type="button" class="btn btn-primary btn-lg">Logout</button></a>
+
+	<div class="main">
+		<div class="main-w3l">
+			<h2 class="logo-w3"> Short List </h1>
+  			<div class="w3layouts-main">
+          {% if shortlist %}
+          <ul>
+            {% for candidate in shortlist %}
+              {% if candidate.is_interview == True %}
+              <h4 style = "background-color:yellow"><a href="{% url 'UpdateProfile' candidate.pk poc.pk%}">{{ candidate.candidate_name }}</a></h4>
+              {% else %}
+              <h4 ><a href="{% url 'UpdateProfile' candidate.pk poc.pk%}">{{ candidate.candidate_name }}</a></h4>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+  			</div>
+
+      <h2 class="jumbotron logo-w3"> Wait List </h1>
+        <div class="w3layouts-main">
+          {% if waitlist %}
+          <ul>
+
+            {% for candidate in waitlist %}
+						{% if candidate.is_interview ==  True %}
+            <h4 style = "background-color:yellow"><a href="{% url 'UpdateProfile' candidate.pk poc.pk %}">{{ candidate.candidate_name }}</a></h4>
+            {% else %}
+            <h4 ><a href="{% url 'UpdateProfile' candidate.pk poc.pk%}">{{ candidate.candidate_name }}</a></h4>
+            {% endif %}
+						{% endfor %}
+        </ul>
+          {% endif %}
+  			</div>
+
+    </div>
+	</div>
+
+{% endblock %}
